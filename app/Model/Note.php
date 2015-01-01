@@ -81,8 +81,8 @@ class Note extends AppModel {
  * @var array
  */
 	public $hasMany = array(
-		'File' => array(
-			'className' => 'File',
+		'FileUpload' => array(
+			'className' => 'FileUpload',
 			'foreignKey' => 'note_id',
 			'dependent' => false,
 			'conditions' => '',

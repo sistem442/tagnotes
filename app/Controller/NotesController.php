@@ -13,7 +13,7 @@ class NotesController extends AppController {
  *
  * @var array
  */
-	public $components = array('Paginator');
+	public $components = array('Paginator','Session');
 
 /**
  * index method

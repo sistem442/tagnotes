@@ -40,7 +40,13 @@ class NotesController extends AppController {
 		$this->set('note', $this->Note->find('first', $options));
 	}
 
-/**
+        public function info()
+        {
+            echo phpinfo();
+            die;
+        }
+
+                /**
  * add method
  *
  * @return void

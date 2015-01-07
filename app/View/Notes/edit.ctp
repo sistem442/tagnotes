@@ -1,17 +1,40 @@
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.12/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="/js/tag-it.js" type="text/javascript" charset="utf-8"></script>
+<link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/flick/jquery-ui.css">
+<link href="/css/jquery.tagit.css" rel="stylesheet" type="text/css">
+<script type="text/javascript">
+    
+    $(document).ready(function() {
+        //TO DO instead of sample tags list real tags
+        var sampleTags = ['c++', 'java', 'php', 'coldfusion', 'javascript', 'asp', 'ruby', 'python', 'c', 'scala', 'groovy', 'haskell', 'perl', 'erlang', 'apl', 'cobol', 'go', 'lua'];
+        $('#singleFieldTags').tagit({
+       availableTags: sampleTags,
+       // This will make Tag-it submit a single form value, as a comma-delimited field.
+       singleField: true,
+       singleFieldNode: $('#NoteTest')
+       });
+
+    });
+</script>
 <div class="notes form">
 <?php echo $this->Form->create('Note'); ?>
-	<fieldset>
-		<legend><?php echo __('Edit Note'); ?></legend>
-	<?php
-		echo $this->Form->input('id');
-		echo $this->Form->input('name');
-		echo $this->Form->input('content');
-		echo $this->Form->input('status');
-		echo $this->Form->input('keywords');
-		echo $this->Form->input('user_id');
-		echo $this->Form->input('Tag');
-	?>
-	</fieldset>
+    <fieldset>
+        <legend><?php echo __('Edit Note'); ?></legend>
+<?php
+        echo $this->Form->input('id');
+        echo $this->Form->input('name');
+        echo $this->Form->input('content');
+        echo $this->Form->input('status');
+        echo $this->Form->input('keywords');
+        echo $this->Form->input('Tag');
+        echo $this->Form->input('test');//field for transfering tags to backend
+
+?>
+
+        <ul id="singleFieldTags" class="tagit ui-widget ui-widget-content ui-corner-all">
+        </ul>
+    </fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>
 </div>
 <div class="actions">

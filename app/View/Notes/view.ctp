@@ -26,11 +26,6 @@
 			<?php echo h($note['Note']['keywords']); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('User'); ?></dt>
-		<dd>
-			<?php echo $this->Html->link($note['User']['name'], array('controller' => 'users', 'action' => 'view', $note['User']['id'])); ?>
-			&nbsp;
-		</dd>
 		<dt><?php echo __('Created'); ?></dt>
 		<dd>
 			<?php echo h($note['Note']['created']); ?>
@@ -50,8 +45,6 @@
 		<li><?php echo $this->Form->postLink(__('Delete Note'), array('action' => 'delete', $note['Note']['id']), array(), __('Are you sure you want to delete # %s?', $note['Note']['id'])); ?> </li>
 		<li><?php echo $this->Html->link(__('List Notes'), array('action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New Note'), array('action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Users'), array('controller' => 'users', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New User'), array('controller' => 'users', 'action' => 'add')); ?> </li>
 		<li><?php echo $this->Html->link(__('List File Uploads'), array('controller' => 'file_uploads', 'action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New File Upload'), array('controller' => 'file_uploads', 'action' => 'add')); ?> </li>
 		<li><?php echo $this->Html->link(__('List Users Shares'), array('controller' => 'users_shares', 'action' => 'index')); ?> </li>

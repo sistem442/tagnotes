@@ -22,7 +22,7 @@ class NotesController extends AppController {
  */
 	public function index() {
 		$this->Note->recursive = 0;
-		$this->set('notes', $this->Paginator->paginate());
+                $this->set('notes', $this->Paginator->paginate('Note',array('user_id'=>$this->Auth->user('id'))));
 	}
 
 /**
@@ -54,6 +54,8 @@ class NotesController extends AppController {
 	public function add() {
 		if ($this->request->is('post')) {
 			$this->Note->create();
+                        $this->request->data['Note']['user_id'] = $this->Auth->user('id');
+                        debug($this->Auth->user('id'));
 			if ($this->Note->save($this->request->data)) {
 				$this->Session->setFlash(__('The note has been saved.'));
 				return $this->redirect(array('action' => 'index'));
@@ -91,6 +93,7 @@ class NotesController extends AppController {
 		$users = $this->Note->User->find('list');
 		$tags = $this->Note->Tag->find('list');
 		$this->set(compact('users', 'tags'));
+                //debug($tags);
 	}
 
 /**
@@ -113,4 +116,21 @@ class NotesController extends AppController {
 		}
 		return $this->redirect(array('action' => 'index'));
 	}
+        
+        public function isAuthorized($user) {
+            // All registered users can add posts
+            if ($this->action === 'add') {
+                return true;
+            }
+
+            // The owner of a post can edit and delete it
+            if (in_array($this->action, array('edit', 'delete'))) {
+                $noteId = (int) $this->request->params['pass'][0];
+                if ($this->Note->isOwnedBy($noteId, $user['id'])) {
+                    return true;
+                }
+            }
+
+            return parent::isAuthorized($user);
+        }
 }

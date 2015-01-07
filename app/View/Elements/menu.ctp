@@ -1,0 +1,1 @@
+<a href='/users/login'>Login</a> <a href='/users/logout'>Logout</a>
